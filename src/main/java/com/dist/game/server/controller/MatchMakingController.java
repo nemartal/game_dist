@@ -2,7 +2,7 @@ package com.dist.game.server.controller;
 
 import com.dist.game.share.exception.GameNotFoundException;
 import com.dist.game.server.model.Game;
-import com.dist.game.server.model.GameType;
+import com.dist.game.share.model.GameType;
 
 import java.util.HashMap;
 import java.util.UUID;

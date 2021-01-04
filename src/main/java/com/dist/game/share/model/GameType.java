@@ -1,4 +1,4 @@
-package com.dist.game.server.model;
+package com.dist.game.share.model;
 
 import java.io.Serializable;
 
