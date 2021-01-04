@@ -2,8 +2,10 @@ package com.dist.game.server.controller;
 
 import com.dist.game.server.exception.GameNotFoundException;
 import com.dist.game.server.model.Game;
+import com.dist.game.server.model.GameType;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 public class GameController {
 
@@ -26,5 +28,11 @@ public class GameController {
             throw new GameNotFoundException();
         }
         return this.games.get(id);
+    }
+
+    public Game createGame(GameType type) {
+        String id = UUID.randomUUID().toString();
+        //TODO: Create by type
+        return null;
     }
 }

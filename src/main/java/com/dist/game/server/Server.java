@@ -9,6 +9,7 @@ import java.net.Socket;
 public class Server {
     static final int PORT = 16543;
 
+    //TODO: Create a socket pool
     public static void main(String[] args) {
         ServerSocket serverSocket = null;
 
