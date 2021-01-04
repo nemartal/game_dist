@@ -1,6 +1,6 @@
 package com.dist.game.server.controller;
 
-import com.dist.game.server.exception.GameNotFoundException;
+import com.dist.game.share.exception.GameNotFoundException;
 import com.dist.game.server.model.Game;
 import com.dist.game.server.model.GameType;
 

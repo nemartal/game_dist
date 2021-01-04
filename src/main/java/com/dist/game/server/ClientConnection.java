@@ -1,6 +1,7 @@
 package com.dist.game.server;
 
 import com.dist.game.server.controller.GameController;
+import com.dist.game.server.controller.MatchMakingController;
 import com.dist.game.share.model.User;
 import com.dist.game.share.model.dto.UserDTO;
 
@@ -36,7 +37,10 @@ public class ClientConnection extends Thread {
             UserDTO userDto = (UserDTO) ois.readObject();
 
             // Create or join
-            GameController gc = GameController.getInstance();
+            GameController gc = MatchMakingController.getInstance().getGame("");
+
+
+            gc.join();
 
             // Play
 
