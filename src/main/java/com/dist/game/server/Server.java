@@ -13,7 +13,7 @@ public class Server {
     public static void main(String[] args) {
         ServerSocket serverSocket = null;
 
-        // Init first time - GameController
+        // First time to create new GameController
         GameController.getInstance();
 
         try {
