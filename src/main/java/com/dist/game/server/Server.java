@@ -1,6 +1,6 @@
 package com.dist.game.server;
 
-import com.dist.game.server.controller.GameController;
+import com.dist.game.server.controller.MatchMakingController;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -13,8 +13,8 @@ public class Server {
     public static void main(String[] args) {
         ServerSocket serverSocket = null;
 
-        // First time to create new GameController
-        GameController.getInstance();
+        // First time to create new MatchMakingController
+        MatchMakingController.getInstance();
 
         try {
             serverSocket = new ServerSocket(PORT);
