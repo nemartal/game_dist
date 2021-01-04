@@ -1,5 +1,7 @@
 package com.dist.game.server;
 
+import com.dist.game.server.controller.GameController;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -9,6 +11,10 @@ public class Server {
 
     public static void main(String[] args) {
         ServerSocket serverSocket = null;
+
+        // Init first time - GameController
+        GameController.getInstance();
+
         try {
             serverSocket = new ServerSocket(PORT);
             while (true) {
