@@ -14,6 +14,7 @@ public class Server {
             while (true) {
                 try {
                     Socket socket = serverSocket.accept();
+                    new ClientConnection(socket).start();
                 } catch (IOException e) {
                     System.out.println("Error: Cant accept connection " + e);
                 }
