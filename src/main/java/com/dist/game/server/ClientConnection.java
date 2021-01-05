@@ -37,10 +37,12 @@ public class ClientConnection extends Thread {
             UserDTO userDto = (UserDTO) ois.readObject();
 
             // Create or join
-            GameController gc = MatchMakingController.getInstance().getGame("");
+            //TODO: comentado por error
+            //GameController gc = MatchMakingController.getInstance().getGame("");
 
 
-            gc.join();
+            //TODO: comentado por error
+            //gc.join();
 
             // Play
 
