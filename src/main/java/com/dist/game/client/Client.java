@@ -29,19 +29,22 @@ public class Client implements Serializable{
 
             os = socket.getOutputStream();
             is = socket.getInputStream();
-            bf = new BufferedWriter(new OutputStreamWriter(os));
+
+            ois = new ObjectInputStream(is);
+            oos = new ObjectOutputStream(os);
 
             System.out.println("Write a nick");
             Scanner entrada = new Scanner(System.in);
             nick = entrada.nextLine();
 
-            bf.write(nick);
+            oos.writeObject(nick);
+            oos.flush();
 
-
-            ois = new ObjectInputStream(is);
             user = (User) ois.readObject();
 
-            oos = new ObjectOutputStream(os);
+            System.out.println(user.getId());
+
+
             System.out.println("Do you want to join a game? yes o no");
             yesNo = entrada.nextLine();
             GameAction gameAction = null;
@@ -65,14 +68,17 @@ public class Client implements Serializable{
         GameAction gameAction = GameAction.JOIN;
         System.out.println("Write the code of the room");
         codeRoom = entrada.nextLine();
-        bf.write(codeRoom);
+        oos.writeObject(codeRoom);
+        oos.flush();
         oos.writeObject(gameAction);
+        oos.flush();
 
     }
 
     public void CreateRoom(ObjectOutputStream oos) throws IOException {
         GameAction gameAction = GameAction.CREATE;
         oos.writeObject(gameAction);
+        oos.flush();
         System.out.println();
     }
 }
