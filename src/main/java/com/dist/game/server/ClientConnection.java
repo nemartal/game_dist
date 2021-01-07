@@ -6,6 +6,7 @@ import com.dist.game.share.exception.GameMaxUsersException;
 import com.dist.game.share.exception.GameNotFoundException;
 import com.dist.game.share.exception.GameUserAlreadyJoinedException;
 import com.dist.game.share.model.GameAction;
+import com.dist.game.share.model.GameType;
 import com.dist.game.share.model.User;
 
 import java.io.*;
@@ -68,7 +69,8 @@ public class ClientConnection extends Thread {
                 String gameId = br.readLine();
                 this.gc = MatchMakingController.getInstance().getGame(gameId);
             } else {
-                this.gc = MatchMakingController.getInstance().createGame();
+                GameType gameType = (GameType) ois.readObject();
+                this.gc = MatchMakingController.getInstance().createGame(gameType);
                 this.bw.write(this.gc.getId());
             }
             this.gc.join(this.user);

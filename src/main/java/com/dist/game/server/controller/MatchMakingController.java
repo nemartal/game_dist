@@ -1,6 +1,7 @@
 package com.dist.game.server.controller;
 
 import com.dist.game.share.exception.GameNotFoundException;
+import com.dist.game.share.model.GameType;
 
 import java.util.HashMap;
 
@@ -27,7 +28,8 @@ public class MatchMakingController {
         return this.games.get(id);
     }
 
-    public GameController createGame() {
+    public GameController createGame(GameType gameType) {
+        //TODO: Create game controller with type
         GameController gc = new GameController();
         this.games.put(gc.getId(), gc);
         return gc;
