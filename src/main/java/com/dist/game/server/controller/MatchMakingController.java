@@ -1,12 +1,8 @@
 package com.dist.game.server.controller;
 
 import com.dist.game.share.exception.GameNotFoundException;
-//TODO: comentado por error
-//import com.dist.game.server.model.Game;
-import com.dist.game.share.model.GameType;
 
 import java.util.HashMap;
-import java.util.UUID;
 
 public class MatchMakingController {
 
@@ -31,10 +27,10 @@ public class MatchMakingController {
         return this.games.get(id);
     }
 
-    //TODO: comentado por error
-    /*public game creategame(gametype type) {
-        string id = uuid.randomuuid().tostring();
-        //todo: create by type
-        return null;
-    }*/
+    public GameController createGame() {
+        GameController gc = new GameController();
+        this.games.put(gc.getId(), gc);
+        return gc;
+    }
+
 }
