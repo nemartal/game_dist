@@ -17,11 +17,14 @@ public class Server {
         MatchMakingController.getInstance();
 
         try {
+            System.out.println("Iniciando servidor");
             serverSocket = new ServerSocket(PORT);
             while (true) {
                 try {
+                    System.out.println("Esperando");
                     Socket socket = serverSocket.accept();
                     new ClientConnection(socket).start();
+                    System.out.println("Usuario conectado");
                 } catch (IOException e) {
                     System.out.println("Error: Cant accept connection " + e);
                 }

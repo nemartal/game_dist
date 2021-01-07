@@ -24,8 +24,6 @@ public class ClientConnection extends Thread {
     private ObjectInputStream ois = null;
     private ObjectOutputStream oos = null;
 
-    private BufferedReader br = null;
-    private BufferedWriter bw = null;
 
     public ClientConnection(Socket socket) {
         this.socket = socket;
@@ -35,21 +33,22 @@ public class ClientConnection extends Thread {
     public void run() {
 
         try {
-            is = socket.getInputStream();
             os = socket.getOutputStream();
+            is = socket.getInputStream();
 
-            ois = new ObjectInputStream(is);
             oos = new ObjectOutputStream(os);
+            ois = new ObjectInputStream(is);
 
-            br = new BufferedReader(new InputStreamReader(is));
-            bw = new BufferedWriter(new OutputStreamWriter(os));
-
+            System.out.println("# Esperando Nickname");
             // Get Nickname
-            String nickname = br.readLine();
+            String nickname = (String) ois.readObject();
+            System.out.println("# Nickname: "+nickname);
 
             // Return user
             this.user = new User(nickname);
             oos.writeObject(this.user);
+            oos.flush();
+            System.out.println("# User enviado");
 
             // Create or Join
             this.createOrJoin();
@@ -64,14 +63,16 @@ public class ClientConnection extends Thread {
 
     private void createOrJoin() throws IOException, ClassNotFoundException {
         try {
+            System.out.println("# Esperando Accion");
             GameAction action = (GameAction) ois.readObject();
+            System.out.println("# Accion: "+action.toString());
             if (action.equals(GameAction.JOIN)) {
-                String gameId = br.readLine();
+                String gameId =(String) ois.readObject();
                 this.gc = MatchMakingController.getInstance().getGame(gameId);
             } else {
                 GameType gameType = (GameType) ois.readObject();
                 this.gc = MatchMakingController.getInstance().createGame(gameType);
-                this.bw.write(this.gc.getId());
+                this.oos.writeObject(this.gc.getId());
             }
             this.gc.join(this.user);
             this.oos.writeObject(GameAction.JOINED);
