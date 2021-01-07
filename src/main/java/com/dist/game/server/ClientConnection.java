@@ -72,6 +72,7 @@ public class ClientConnection extends Thread {
                 this.bw.write(this.gc.getId());
             }
             this.gc.join(this.user);
+            this.oos.writeObject(GameAction.JOINED);
         } catch (GameNotFoundException | GameMaxUsersException | GameUserAlreadyJoinedException e) {
             this.oos.writeObject(e);
             this.createOrJoin();
