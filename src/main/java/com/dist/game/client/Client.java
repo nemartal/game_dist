@@ -66,11 +66,11 @@ public class Client implements Serializable{
 
     public void JoinRoom(BufferedWriter bf, Scanner entrada, ObjectOutputStream oos) throws IOException {
         GameAction gameAction = GameAction.JOIN;
+        oos.writeObject(gameAction);
+        oos.flush();
         System.out.println("Write the code of the room");
         codeRoom = entrada.nextLine();
         oos.writeObject(codeRoom);
-        oos.flush();
-        oos.writeObject(gameAction);
         oos.flush();
 
     }
