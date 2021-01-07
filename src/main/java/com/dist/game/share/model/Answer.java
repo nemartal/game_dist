@@ -9,7 +9,7 @@ public class Answer {
 
     private final String text;
 
-    private final boolean rightAnswer;
+    private transient final boolean rightAnswer;
 
     public Answer(String text, boolean rightAnswer) {
         this.id = UUID.randomUUID().toString();

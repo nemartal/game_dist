@@ -8,4 +8,11 @@ public class Question {
 
     private ArrayList<Answer> answers;
 
+    public String getId() {
+        return id;
+    }
+
+    public ArrayList<Answer> getAnswers() {
+        return answers;
+    }
 }

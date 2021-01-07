@@ -10,4 +10,12 @@ public class Stats implements Serializable {
 
     private int wrong;
     private int right;
+
+    public void addWrong() {
+        this.wrong = this.wrong + 1;
+    }
+
+    public void addRight() {
+        this.right = this.right + 1;
+    }
 }
