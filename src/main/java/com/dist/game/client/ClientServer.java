@@ -1,4 +1,4 @@
-package com.dist.game.client.gui;
+package com.dist.game.client;
 
 import com.dist.game.client.Client;
 
