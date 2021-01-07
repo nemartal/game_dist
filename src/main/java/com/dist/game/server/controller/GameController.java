@@ -15,11 +15,12 @@ import java.util.Map;
 
 public class GameController {
 
-    private List<Player> players;
-    private List<Question> questions;
-    private Map<String, Stats> stats;
-    private String id;
-    private GameType type;
+    protected List<Player> players;
+    protected List<Question> questions;
+    protected Map<String, Stats> stats;
+    protected String id;
+    protected GameType type;
+
 
     public GameController(GameType type) {
         this.players = new ArrayList<>();
