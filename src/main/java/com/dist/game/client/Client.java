@@ -7,7 +7,7 @@ import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class Client {
+public class Client implements Serializable{
 
     public static final int PORT = 16543;
     public String nick;
