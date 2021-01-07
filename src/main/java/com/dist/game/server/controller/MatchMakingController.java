@@ -29,8 +29,12 @@ public class MatchMakingController {
     }
 
     public GameController createGame(GameType gameType) {
-        //TODO: Create game controller with type
-        GameController gc = new GameController();
+        GameController gc;
+        if(GameType.PARTY == gameType){
+            gc = new GameControllerParty(gameType);
+        }else{
+            gc = new GameControllerSpeed(gameType);
+        }
         this.games.put(gc.getId(), gc);
         return gc;
     }
