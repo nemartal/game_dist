@@ -4,6 +4,7 @@ import com.dist.game.share.exception.GameMaxUsersException;
 import com.dist.game.share.exception.GameNotFoundException;
 import com.dist.game.share.exception.GameUserAlreadyJoinedException;
 import com.dist.game.share.model.GameAction;
+import com.dist.game.share.model.GameType;
 import com.dist.game.share.model.User;
 
 import java.io.*;
@@ -15,18 +16,18 @@ public class Client implements Serializable{
     public static final int PORT = 16543;
     public String nick;
     public String codeRoom;
-    public User user = null;
 
-    ObjectInputStream ois = null;
-    ObjectOutputStream oos = null;
+    public ObjectInputStream ois = null;
+    public ObjectOutputStream oos = null;
+    public Socket socket = null;
+    public InputStream is = null;
+    public OutputStream os = null;
+    public String yesNo = null;
+
+    public Scanner entrada = null;
 
     public void jugar() {
-        Socket socket = null;
-        InputStream is = null;
-        OutputStream os = null;
-        PrintStream printStream = null;
-        BufferedWriter bf = null;
-        String yesNo = null;
+
 
         try {
             socket = new Socket("localhost", PORT);
@@ -44,22 +45,16 @@ public class Client implements Serializable{
             oos.writeObject(nick);
             oos.flush();
 
-            user = (User) ois.readObject();
-
-            System.out.println(user.getId());
 
 
-            System.out.println("Do you want to join a game? yes o no");
+            System.out.println("Do you want to join or create a game? join or create");
             yesNo = entrada.nextLine();
             GameAction gameAction = null;
-            if (yesNo.equalsIgnoreCase("yes")) {
-                JoinRoom(bf,entrada,oos);
+            if (yesNo.equalsIgnoreCase("join")) {
+                joinRoom();
             }
-
-            System.out.println("Do you want to create a new game? yes o no");
-            yesNo = entrada.nextLine();
-            if (yesNo.equalsIgnoreCase("yes")) {
-                CreateRoom(oos);
+            else if (yesNo.equalsIgnoreCase("create")) {
+                createRoom();
             }
 
 
@@ -68,10 +63,13 @@ public class Client implements Serializable{
         }
     }
 
-    public void JoinRoom(BufferedWriter bf, Scanner entrada, ObjectOutputStream oos) throws IOException, ClassNotFoundException {
+    public void joinRoom() throws IOException, ClassNotFoundException {
+        //Send game action type
         GameAction gameAction = GameAction.JOIN;
         oos.writeObject(gameAction);
         oos.flush();
+
+        //Get room code
         System.out.println("Write the code of the room");
         codeRoom = entrada.nextLine();
         oos.writeObject(codeRoom);
@@ -79,26 +77,47 @@ public class Client implements Serializable{
 
         // GameAction.JOINED
         //GameNotFoundException | GameMaxUsersException | GameUserAlreadyJoinedException
-        Object inp = ois.readObject();
+        Object joined = ois.readObject();
 
-        if(inp instanceof GameAction){
+        if(joined instanceof GameAction){
+            Object gameTipeObj = ois.readObject();
+            if(gameTipeObj instanceof GameType){
+                GameType gameType = (GameType) gameTipeObj;
+                if(gameType.equals(GameType.PARTY)){
+                    //Acede a pantalla party
+                    System.out.println();
+                    //20 preguntas bucle
+                        //Recojo pregunta
+                        //Envio pregunta
 
+                    //Recibo stats
+
+                }else{
+                    //20 preguntas bucle
+                        //Recojo pregunta
+                        //Envio pregunta
+
+                    //Recibo stats
+
+                }
+            }
         }
 
-        if(inp instanceof GameNotFoundException){
+        if(joined instanceof GameNotFoundException){
             System.out.println("No se encuentra el juego");
         }
 
-        if(inp instanceof GameMaxUsersException){
+        if(joined instanceof GameMaxUsersException){
             System.out.println("El juego está lleno");
         }
 
-        if(inp instanceof GameUserAlreadyJoinedException){
+        if(joined instanceof GameUserAlreadyJoinedException){
             System.out.println("Ya estás dentro del juego");
         }
     }
 
-    public void CreateRoom(ObjectOutputStream oos) throws IOException {
+    public void createRoom() throws IOException {
+        //Send game action tipe
         GameAction gameAction = GameAction.CREATE;
         oos.writeObject(gameAction);
         oos.flush();
