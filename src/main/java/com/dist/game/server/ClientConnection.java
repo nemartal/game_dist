@@ -64,16 +64,20 @@ public class ClientConnection extends Thread {
     private void createOrJoin() throws IOException, ClassNotFoundException {
         try {
             System.out.println("# Esperando Accion");
+            // Get game action
             GameAction action = (GameAction) ois.readObject();
             System.out.println("# Accion: "+action.toString());
             if (action.equals(GameAction.JOIN)) {
                 String gameId =(String) ois.readObject();
                 this.gc = MatchMakingController.getInstance().getGame(gameId);
             } else {
+                System.out.println("# Creando juego");
                 GameType gameType = (GameType) ois.readObject();
                 this.gc = MatchMakingController.getInstance().createGame(gameType);
+                // Send game id
                 this.oos.writeObject(this.gc.getId());
             }
+            System.out.println("# Uniendose");
             this.gc.join(this.user);
             this.oos.writeObject(GameAction.JOINED);
         } catch (GameNotFoundException | GameMaxUsersException | GameUserAlreadyJoinedException e) {

@@ -1,5 +1,8 @@
 package com.dist.game.client;
 
+import com.dist.game.share.exception.GameMaxUsersException;
+import com.dist.game.share.exception.GameNotFoundException;
+import com.dist.game.share.exception.GameUserAlreadyJoinedException;
 import com.dist.game.share.model.GameAction;
 import com.dist.game.share.model.User;
 
@@ -14,10 +17,11 @@ public class Client implements Serializable{
     public String codeRoom;
     public User user = null;
 
+    ObjectInputStream ois = null;
+    ObjectOutputStream oos = null;
+
     public void jugar() {
         Socket socket = null;
-        ObjectInputStream ois = null;
-        ObjectOutputStream oos = null;
         InputStream is = null;
         OutputStream os = null;
         PrintStream printStream = null;
@@ -64,7 +68,7 @@ public class Client implements Serializable{
         }
     }
 
-    public void JoinRoom(BufferedWriter bf, Scanner entrada, ObjectOutputStream oos) throws IOException {
+    public void JoinRoom(BufferedWriter bf, Scanner entrada, ObjectOutputStream oos) throws IOException, ClassNotFoundException {
         GameAction gameAction = GameAction.JOIN;
         oos.writeObject(gameAction);
         oos.flush();
@@ -73,6 +77,25 @@ public class Client implements Serializable{
         oos.writeObject(codeRoom);
         oos.flush();
 
+        // GameAction.JOINED
+        //GameNotFoundException | GameMaxUsersException | GameUserAlreadyJoinedException
+        Object inp = ois.readObject();
+
+        if(inp instanceof GameAction){
+
+        }
+
+        if(inp instanceof GameNotFoundException){
+            System.out.println("No se encuentra el juego");
+        }
+
+        if(inp instanceof GameMaxUsersException){
+            System.out.println("El juego está lleno");
+        }
+
+        if(inp instanceof GameUserAlreadyJoinedException){
+            System.out.println("Ya estás dentro del juego");
+        }
     }
 
     public void CreateRoom(ObjectOutputStream oos) throws IOException {
