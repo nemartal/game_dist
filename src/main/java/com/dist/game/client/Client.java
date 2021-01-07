@@ -17,6 +17,7 @@ public class Client {
         Socket socket = null;
         ObjectInputStream ois = null;
         ObjectOutputStream oos = null;
+        InputStream is = null;
         OutputStream os = null;
         PrintStream printStream = null;
         BufferedWriter bf = null;
@@ -25,16 +26,21 @@ public class Client {
         try {
             socket = new Socket("localhost", PORT);
 
+            os = socket.getOutputStream();
+            is = socket.getInputStream();
+            ois = new ObjectInputStream(is);
+            oos = new ObjectOutputStream(os);
+            bf = new BufferedWriter(new OutputStreamWriter(os));
+
             System.out.println("Write a nick");
             Scanner entrada = new Scanner(System.in);
             nick = entrada.nextLine();
 
-            bf = new BufferedWriter(new OutputStreamWriter(os));
             bf.write(nick);
 
             User user = null;
-
             user = (User) ois.readObject();
+
 
             System.out.println("Do you want to join a game? yes o no");
             yesNo = entrada.nextLine();
