@@ -64,8 +64,9 @@ public class Client {
 
     }
 
-    public void CreateRoom(ObjectOutputStream oos){
+    public void CreateRoom(ObjectOutputStream oos) throws IOException {
         GameAction gameAction = GameAction.CREATE;
         oos.writeObject(gameAction);
+        System.out.println();
     }
 }
