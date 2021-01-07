@@ -1,34 +1,42 @@
 package com.dist.game.server.controller;
 
+import com.dist.game.server.model.Player;
 import com.dist.game.share.exception.GameMaxUsersException;
 import com.dist.game.share.exception.GameUserAlreadyJoinedException;
 import com.dist.game.share.model.GameType;
-import com.dist.game.share.model.User;
+import com.dist.game.share.model.Question;
+import com.dist.game.share.model.Stats;
 import com.dist.game.share.util.RandomString;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GameController {
 
-    private List<User> users;
+    private List<Player> players;
+    private List<Question> questions;
+    private Map<String, Stats> stats;
     private String id;
     private GameType type;
 
     public GameController(GameType type) {
-        this.users = new ArrayList<>();
+        this.players = new ArrayList<>();
         this.id = (new RandomString(5)).nextString();
         this.type = type;
+        this.stats = new HashMap<>();
     }
 
-    public synchronized void join(User user) throws GameMaxUsersException, GameUserAlreadyJoinedException {
-        if (users.size() == 4) {
+    public synchronized void join(Player player) throws GameMaxUsersException, GameUserAlreadyJoinedException {
+        if (players.size() == 4) {
             throw new GameMaxUsersException();
         }
-        if (users.contains(user)) {
+        if (players.contains(player)) {
             throw new GameUserAlreadyJoinedException();
         }
-        users.add(user);
+        players.add(player);
+        stats.put(player.getId(), new Stats());
     }
 
     public String getId() {
