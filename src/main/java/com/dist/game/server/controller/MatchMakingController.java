@@ -30,7 +30,7 @@ public class MatchMakingController {
 
     public GameController createGame(GameType gameType) {
         //TODO: Create game controller with type
-        GameController gc = new GameController();
+        GameController gc = new GameController(gameType);
         this.games.put(gc.getId(), gc);
         return gc;
     }

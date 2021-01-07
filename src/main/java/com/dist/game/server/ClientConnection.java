@@ -55,6 +55,7 @@ public class ClientConnection extends Thread {
 
             // Play
 
+
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Error: IOException");
             e.printStackTrace();
@@ -79,7 +80,10 @@ public class ClientConnection extends Thread {
             }
             System.out.println("# Uniendose");
             this.gc.join(this.user);
+            // Send Action Joined
             this.oos.writeObject(GameAction.JOINED);
+            // Send Game Type
+            this.oos.writeObject(this.gc.getType());
         } catch (GameNotFoundException | GameMaxUsersException | GameUserAlreadyJoinedException e) {
             this.oos.writeObject(e);
             this.createOrJoin();
