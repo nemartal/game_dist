@@ -64,7 +64,7 @@ public class ClientConnection extends Thread {
                 String gameId = br.readLine();
                 this.gc = MatchMakingController.getInstance().getGame(gameId);
             } else {
-                this.gc = MatchMakingController.getInstance().createGame();
+                //this.gc = MatchMakingController.getInstance().createGame();
 
             }
         } catch (GameNotFoundException e) {
