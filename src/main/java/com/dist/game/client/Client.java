@@ -23,7 +23,7 @@ public class Client {
         String yesNo = null;
 
         try {
-            socket = new Socket();
+            socket = new Socket("localhost", PORT);
 
             System.out.println("Write a nick");
             Scanner entrada = new Scanner(System.in);
