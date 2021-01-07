@@ -12,6 +12,7 @@ public class Client {
     public static final int PORT = 16543;
     public String nick;
     public String codeRoom;
+    public User user = null;
 
     public void jugar() {
         Socket socket = null;
@@ -28,8 +29,6 @@ public class Client {
 
             os = socket.getOutputStream();
             is = socket.getInputStream();
-            ois = new ObjectInputStream(is);
-            oos = new ObjectOutputStream(os);
             bf = new BufferedWriter(new OutputStreamWriter(os));
 
             System.out.println("Write a nick");
@@ -38,10 +37,11 @@ public class Client {
 
             bf.write(nick);
 
-            User user = null;
+
+            ois = new ObjectInputStream(is);
             user = (User) ois.readObject();
 
-
+            oos = new ObjectOutputStream(os);
             System.out.println("Do you want to join a game? yes o no");
             yesNo = entrada.nextLine();
             GameAction gameAction = null;
