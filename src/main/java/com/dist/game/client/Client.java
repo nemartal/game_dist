@@ -1,11 +1,11 @@
 package com.dist.game.client;
 
+import com.dist.game.client.gui.IntroNickCode;
 import com.dist.game.share.exception.GameMaxUsersException;
 import com.dist.game.share.exception.GameNotFoundException;
 import com.dist.game.share.exception.GameUserAlreadyJoinedException;
 import com.dist.game.share.model.GameAction;
 import com.dist.game.share.model.GameType;
-import com.dist.game.share.model.User;
 
 import java.io.*;
 import java.net.Socket;
@@ -14,8 +14,8 @@ import java.util.Scanner;
 public class Client implements Serializable{
 
     public static final int PORT = 16543;
-    public String nick;
-    public String codeRoom;
+    public String nick = "";
+    public String codeRoom = "";
 
     public ObjectInputStream ois = null;
     public ObjectOutputStream oos = null;
@@ -38,9 +38,12 @@ public class Client implements Serializable{
             ois = new ObjectInputStream(is);
             oos = new ObjectOutputStream(os);
 
-            System.out.println("Write a nick");
-            Scanner entrada = new Scanner(System.in);
-            nick = entrada.nextLine();
+            IntroNickCode introNickCode = new IntroNickCode();
+            introNickCode.introNick(nick);
+            introNickCode.showInterface();
+
+            nick = introNickCode.getNick();
+            System.out.println(nick);
 
             oos.writeObject(nick);
             oos.flush();
