@@ -5,14 +5,9 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextPane;
-import javax.swing.JTextField;
-import javax.swing.JButton;
 import java.awt.Insets;
-import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.ObjectInputStream;
@@ -48,8 +43,7 @@ public class CreateEnterRoom extends JFrame  {
 
 
 
-        JTextPane textPanel = new JTextPane();
-        textPanel.setEditable(false);
+        JLabel textPanel = new JLabel();
         textPanel.setText("¿Desea acceder a una sala o crear una nueva?");
         GridBagConstraints gbc_textPanel = new GridBagConstraints();
         gbc_textPanel.insets = new Insets(0, 0, 5, 4);
