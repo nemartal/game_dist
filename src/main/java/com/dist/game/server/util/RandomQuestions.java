@@ -50,7 +50,7 @@ public class RandomQuestions {
                     for (int i = 0; i < nAnswers.getLength(); i++) {
                         Node nodeAnswer = nAnswers.item(i);
                         if (nodeAnswer.getNodeType() == Node.ELEMENT_NODE) {
-                            Element answer = (Element) nNode;
+                            Element answer = (Element) nodeAnswer;
                             q.addAnswer(new Answer(
                                     answer.getElementsByTagName("id").item(0).getTextContent(),
                                     answer.getElementsByTagName("text").item(0).getTextContent(),
