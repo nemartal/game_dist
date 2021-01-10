@@ -1,5 +1,6 @@
 package com.dist.game.server.controller;
 
+import com.dist.game.server.model.Player;
 import com.dist.game.share.model.GameType;
 
 import java.util.HashMap;
@@ -13,6 +14,11 @@ public class GameControllerParty extends GameController {
     public GameControllerParty(GameType type) {
         super(type);
         this.control = new HashMap<>();
+    }
+
+    @Override
+    public void play(Player player) {
+
     }
 
 }

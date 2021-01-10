@@ -99,6 +99,7 @@ public class IntroNickCode extends JFrame {
             oos.writeObject(GameAction.JOIN);
             oos.writeObject(code);
             tipoJuego = (GameType) ois.readObject();
+            System.out.println("Tipo: " + tipoJuego);
             if(tipoJuego.equals(GameType.PARTY)){
                 openGameRoomParty();
             }else{

@@ -152,7 +152,6 @@ public class GameRoom extends JFrame {
     }
 
     public void gameRoomSpeed() {
-        contentPane.removeAll();
 
         JPanel panel_2 = new JPanel();
         GridBagConstraints gbc_panel_2 = new GridBagConstraints();

@@ -21,10 +21,9 @@ public class GameControllerSpeed extends GameController {
 
     public synchronized void join(Player player) throws GameMaxUsersException, GameUserAlreadyJoinedException {
         super.join(player);
-        this.play(player);
     }
 
-    private void play(Player player) {
+    public void play(Player player) {
 
         for (Question question : this.questions) {
             try {

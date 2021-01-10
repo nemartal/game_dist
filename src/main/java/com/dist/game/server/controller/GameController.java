@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class GameController {
+public abstract class GameController {
 
     protected List<Player> players;
     protected List<Question> questions;
@@ -39,6 +39,8 @@ public class GameController {
         players.add(player);
         stats.put(player.getId(), new Stats());
     }
+
+    public abstract void play(Player player);
 
     public String getId() {
         return id;

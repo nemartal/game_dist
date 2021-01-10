@@ -45,6 +45,8 @@ public class ClientConnection extends Thread {
             // Create or Join
             this.createOrJoin();
 
+            this.gc.play(player);
+
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Error: IOException");
             e.printStackTrace();
