@@ -48,8 +48,16 @@ public class ClientConnection extends Thread {
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Error: IOException");
             e.printStackTrace();
-
-            //TODO: Remove player in game
+        } finally {
+            try {
+                if (socket != null)
+                    socket.close();
+                if (is != null)
+                    is.close();
+                if (os != null)
+                    os.close();
+            } catch (IOException e) {
+            }
         }
     }
 

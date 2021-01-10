@@ -1,9 +1,9 @@
 package com.dist.game.share.model;
 
+import java.io.Serializable;
 import java.util.Objects;
-import java.util.UUID;
 
-public class Answer {
+public class Answer implements Serializable {
 
     private final String id;
 
@@ -11,8 +11,8 @@ public class Answer {
 
     private transient final boolean rightAnswer;
 
-    public Answer(String text, boolean rightAnswer) {
-        this.id = UUID.randomUUID().toString();
+    public Answer(String id, String text, boolean rightAnswer) {
+        this.id = id;
         this.text = text;
         this.rightAnswer = rightAnswer;
     }
@@ -27,6 +27,7 @@ public class Answer {
 
     /**
      * Return if the answer is right or wrong
+     *
      * @return if the answer is right or wrong
      */
     public boolean isRight() {
