@@ -153,9 +153,9 @@ public class GameRoom extends JFrame {
         gbc_panel.gridy = 0;
         contentPane.add(panel, gbc_panel);
 
-        txtpnPregunta = new JLabel();
-        txtpnPregunta.setText("");
-        panel.add(txtpnPregunta);
+        txtPregunta = new JLabel();
+        txtPregunta.setText("");
+        panel.add(txtPregunta);
 
         JPanel panel_3 = new JPanel();
         GridBagConstraints gbc_panel_3 = new GridBagConstraints();
@@ -236,7 +236,7 @@ public class GameRoom extends JFrame {
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        this.txtpnPregunta.setText(question.getText());
+        this.txtPregunta.setText(question.getText());
         this.btnAnswer1.setText(question.getAnswers().get(0).getText());
         this.btnAnswer2.setText(question.getAnswers().get(1).getText());
         this.btnAnswer3.setText(question.getAnswers().get(2).getText());
