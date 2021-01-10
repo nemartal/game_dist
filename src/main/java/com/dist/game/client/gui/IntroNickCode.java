@@ -96,6 +96,7 @@ public class IntroNickCode extends JFrame {
     public void sendCode(String code) {
         try {
             System.out.println("Enviando code: " + code);
+            oos.writeObject(GameAction.JOIN);
             oos.writeObject(code);
             tipoJuego = (GameType) ois.readObject();
             if(tipoJuego.equals(GameType.PARTY)){
