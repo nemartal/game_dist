@@ -29,8 +29,11 @@ public class GameControllerSpeed extends GameController {
 
         for (Question question : this.questions) {
             try {
+                System.out.println("Enviar pregunta");
                 player.sendQuestion(question);
+                System.out.println("Esperar respuesta");
                 Answer answer = player.awaitAnswer();
+                System.out.println("Comprobar respuesta");
 
                 Stats stats = this.stats.get(player.getId());
                 boolean isRight = false;
