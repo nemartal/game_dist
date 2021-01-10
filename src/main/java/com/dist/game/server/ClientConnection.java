@@ -90,8 +90,6 @@ public class ClientConnection extends Thread {
             }
             System.out.println("# Uniendose");
             this.gc.join(this.player);
-            // Send Action Joined
-            this.oos.writeObject(GameAction.JOINED);
             // Send Game Type
             this.oos.writeObject(this.gc.getType());
         } catch (GameNotFoundException | GameMaxUsersException | GameUserAlreadyJoinedException e) {
