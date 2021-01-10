@@ -131,10 +131,19 @@ public class GameSelection extends JFrame {
 
     //Acceso a la sala de juego Party
     public void openGameRoomParty() {
-        //closeInterface();
-        //GameRoom gr = new GameRoom();
-        //gr.gameRoomParty();
-        //gr.showInterface();
+        closeInterface();
+        try {
+            oos.writeObject(GameAction.CREATE);
+            oos.writeObject(GameType.PARTY);
+            String roomId = (String) ois.readObject();
+            System.out.println(roomId);
+            GameType type = (GameType) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        GameRoom gr = new GameRoom(ois, oos, nick);
+        gr.gameRoomParty();
+        gr.showInterface();
 
     }
 

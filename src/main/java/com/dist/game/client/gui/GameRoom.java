@@ -26,7 +26,7 @@ public class GameRoom extends JFrame {
     private JButton btnAnswer2;
     private JButton btnAnswer3;
     private JButton btnAnswer4;
-    private JLabel txtpnPregunta;
+    private JLabel txtPregunta;
 
     private Question question;
 
@@ -70,9 +70,9 @@ public class GameRoom extends JFrame {
         gbc_panel.gridy = 0;
         contentPane.add(panel, gbc_panel);
 
-        JTextPane txtpnPregunta = new JTextPane();
-        txtpnPregunta.setText("Pregunta");
-        panel.add(txtpnPregunta);
+        txtPregunta = new JLabel();
+        txtPregunta.setText("");
+        panel.add(txtPregunta);
 
         JPanel panel_3 = new JPanel();
         GridBagConstraints gbc_panel_3 = new GridBagConstraints();
@@ -109,16 +109,16 @@ public class GameRoom extends JFrame {
         contentPane.add(panel_1, gbc_panel_1);
         panel_1.setLayout(new GridLayout(2, 2, 0, 0));
 
-        JButton btnAnswer1 = new JButton("Respuesta 1");
+        btnAnswer1 = new JButton("");
         panel_1.add(btnAnswer1);
 
-        JButton btnAnswer2 = new JButton("Respuesta 2");
+        btnAnswer2 = new JButton("");
         panel_1.add(btnAnswer2);
 
-        JButton btnAnswer3 = new JButton("Respuesta 3");
+        btnAnswer3 = new JButton("");
         panel_1.add(btnAnswer3);
 
-        JButton btnAnswer4 = new JButton("Respuesta 4");
+        btnAnswer4 = new JButton("");
         panel_1.add(btnAnswer4);
 
         JPanel panel_5 = new JPanel();
@@ -133,6 +133,32 @@ public class GameRoom extends JFrame {
         txtPlayer4.setText("Jugador 4");
         panel_5.add(txtPlayer4);
 
+        btnAnswer1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sendAnswer(0);
+            }
+        });
+        btnAnswer2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sendAnswer(1);
+            }
+        });
+        btnAnswer3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sendAnswer(2);
+            }
+        });
+        btnAnswer4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sendAnswer(3);
+            }
+        });
+        this.showInterface();
+        nextQuestion();
     }
 
     public void gameRoomSpeed() {
@@ -153,9 +179,9 @@ public class GameRoom extends JFrame {
         gbc_panel.gridy = 0;
         contentPane.add(panel, gbc_panel);
 
-        txtpnPregunta = new JLabel();
-        txtpnPregunta.setText("");
-        panel.add(txtpnPregunta);
+        txtPregunta = new JLabel();
+        txtPregunta.setText("");
+        panel.add(txtPregunta);
 
         JPanel panel_3 = new JPanel();
         GridBagConstraints gbc_panel_3 = new GridBagConstraints();
@@ -226,6 +252,7 @@ public class GameRoom extends JFrame {
                 sendAnswer(3);
             }
         });
+        this.showInterface();
         nextQuestion();
     }
 
@@ -236,7 +263,7 @@ public class GameRoom extends JFrame {
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        this.txtpnPregunta.setText(question.getText());
+        this.txtPregunta.setText(question.getText());
         this.btnAnswer1.setText(question.getAnswers().get(0).getText());
         this.btnAnswer2.setText(question.getAnswers().get(1).getText());
         this.btnAnswer3.setText(question.getAnswers().get(2).getText());
@@ -255,7 +282,6 @@ public class GameRoom extends JFrame {
         }else{
             StatisticsRoom stats = new StatisticsRoom(ois, oos);
             stats.showInterface();
-
         }
     }
 

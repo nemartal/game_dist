@@ -89,6 +89,5 @@ public class GameControllerSpeed extends GameController {
             }
             if (allFinish) end = true;
         }
-
     }
 }

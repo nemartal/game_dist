@@ -155,7 +155,6 @@ public class IntroNickCode extends JFrame {
         contentPane.add(btnBack, gbc_btnNewButton_1);
         captureCodeInfo();
 
-
     }
 
     public String getNick() {
