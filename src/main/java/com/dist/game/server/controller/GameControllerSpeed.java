@@ -9,6 +9,8 @@ import com.dist.game.share.model.GameType;
 import com.dist.game.share.model.Question;
 import com.dist.game.share.model.Stats;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -24,7 +26,8 @@ public class GameControllerSpeed extends GameController {
     }
 
     public void play(Player player) {
-
+        int cont = 0;
+        Stats stats = this.stats.get(player.getId());
         for (Question question : this.questions) {
             try {
                 System.out.println("Enviar pregunta");
@@ -32,8 +35,9 @@ public class GameControllerSpeed extends GameController {
                 System.out.println("Esperar respuesta");
                 Answer answer = player.awaitAnswer();
                 System.out.println("Comprobar respuesta");
-
-                Stats stats = this.stats.get(player.getId());
+                if(cont == 0){
+                    stats.setStart(new Date());
+                }
                 boolean isRight = false;
                 for (Answer ans : question.getAnswers()) {
                     if (ans.getId().equals(answer.getId()) && ans.isRight()) {
@@ -50,10 +54,19 @@ public class GameControllerSpeed extends GameController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            cont++;
         }
+        stats.setFinish(new Date());
         try {
             this.waitToFinish();
             player.sendStats(this.stats);
+
+            // Map <ID, Nickname>
+            Map<String, String> players = new HashMap<>();
+            for (Player p : this.players) {
+                players.put(p.getId(), p.getNickname());
+            }
+            player.sendPlayers(players);
         } catch (Exception ignored) {
         }
 

@@ -36,6 +36,10 @@ public class Player {
         return (Answer) this.ios.readObject();
     }
 
+    public void sendPlayers(Map<String, String> players) throws IOException {
+        this.oos.writeObject(players);
+    }
+
     public String getId() {
         return id;
     }
@@ -56,4 +60,5 @@ public class Player {
     public int hashCode() {
         return Objects.hash(id);
     }
+
 }

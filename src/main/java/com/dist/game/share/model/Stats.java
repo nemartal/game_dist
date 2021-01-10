@@ -26,4 +26,20 @@ public class Stats implements Serializable {
     public int getWrong() {
         return wrong;
     }
+
+    public void setFinish(Date finish) {
+        this.finish = finish;
+    }
+
+    public void setStart(Date start) {
+        this.start = start;
+    }
+
+    public Date getFinish() {
+        return finish;
+    }
+
+    public Date getStart() {
+        return start;
+    }
 }
