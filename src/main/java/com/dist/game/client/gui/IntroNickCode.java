@@ -130,9 +130,6 @@ public class IntroNickCode extends JFrame {
 
         textField = new JTextField();
         panel.add(textField);
-        if (!codeRoom.isEmpty()) {
-            textField.setText(codeRoom);
-        }
         textField.setColumns(10);
 
         JButton btnNewButton = new JButton("Acceder");
