@@ -11,13 +11,12 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTextPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import java.awt.Color;
-import java.awt.CardLayout;
-import javax.swing.JSplitPane;
 import java.awt.Insets;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 
 public class CreateEnterRoom extends JFrame  {
@@ -27,9 +26,12 @@ public class CreateEnterRoom extends JFrame  {
     private String nick = "";
     private String codeRoom = "";
 
+    private ObjectInputStream ois;
+    private ObjectOutputStream oos;
 
-    public CreateEnterRoom(String nick) {
-
+    public CreateEnterRoom(ObjectInputStream ois, ObjectOutputStream oos, String nick) {
+        this.ois = ois;
+        this.oos = oos;
         setNick(nick);
 
         setResizable(false);
@@ -94,9 +96,6 @@ public class CreateEnterRoom extends JFrame  {
         gbc_btnBack.gridx = 1;
         gbc_btnBack.gridy = 3;
         contentPane.add(btnBack, gbc_btnBack);
-
-
-
     }
 
 
@@ -131,23 +130,23 @@ public class CreateEnterRoom extends JFrame  {
     //Acceso a la sala IntroNick para volver atrás
     public void openIntroNickInterface() {
         closeInterface();
-        IntroNickCode in = new IntroNickCode();
-        in.introNick(getNick());
-        in.showInterface();
+        //IntroNickCode in = new IntroNickCode();
+        //in.introNick(getNick());
+        //in.showInterface();
     }
 
     //Acceso a sala ya existente
     public void openGameRoomEnter() {
         closeInterface();
-        IntroNickCode inc = new IntroNickCode();
-        inc.introCodeRoom(getCodeRoom());
-        inc.showInterface();
+        //IntroNickCode inc = new IntroNickCode();
+        //inc.introCodeRoom(getCodeRoom());
+        //inc.showInterface();
     }
 
     //Acceso a elegir tipo juego
     public void openGameRoomNew() {
         closeInterface();
-        GameSelection gs = new GameSelection();
+        GameSelection gs = new GameSelection(ois, oos, getNick());
         gs.showInterface();
     }
 

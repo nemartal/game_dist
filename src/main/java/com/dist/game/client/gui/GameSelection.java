@@ -1,5 +1,8 @@
 package com.dist.game.client.gui;
 
+import com.dist.game.share.model.GameAction;
+import com.dist.game.share.model.GameType;
+
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
@@ -16,6 +19,9 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 
 public class GameSelection extends JFrame {
@@ -25,8 +31,14 @@ public class GameSelection extends JFrame {
     private String nick;
     private String codeRoom;
 
+    private ObjectInputStream ois;
+    private ObjectOutputStream oos;
 
-    public GameSelection() {
+    public GameSelection(ObjectInputStream ois, ObjectOutputStream oos, String nick) {
+        this.ois = ois;
+        this.oos = oos;
+
+        this.nick = nick;
 
         setResizable(false);
         setTitle("Preguntados");
@@ -119,24 +131,32 @@ public class GameSelection extends JFrame {
 
     //Acceso a la sala de juego Party
     public void openGameRoomParty() {
-        closeInterface();
-        GameRoom gr = new GameRoom();
-        gr.gameRoomParty();
-        gr.showInterface();
+        //closeInterface();
+        //GameRoom gr = new GameRoom();
+        //gr.gameRoomParty();
+        //gr.showInterface();
 
     }
 
     //Acceso a la sala de juego Speed
     public void openGameRoomSpeed() {
         closeInterface();
-        GameRoom gr = new GameRoom();
+        try {
+            oos.writeObject(GameAction.CREATE);
+            oos.writeObject(GameType.SPEED);
+            String roomId = (String) ois.readObject();
+
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        GameRoom gr = new GameRoom(ois, oos, nick);
         gr.gameRoomSpeed();
         gr.showInterface();
     }
 
     public void openCreateEnterRoom() {
         closeInterface();
-        CreateEnterRoom cer = new CreateEnterRoom(getNick());
+        CreateEnterRoom cer = new CreateEnterRoom(ois, oos, nick);
         cer.showInterface();
     }
 

@@ -38,19 +38,19 @@ public class Client implements Serializable{
             ois = new ObjectInputStream(is);
             oos = new ObjectOutputStream(os);
 
-            IntroNickCode introNickCode = new IntroNickCode();
+            IntroNickCode introNickCode = new IntroNickCode(ois, oos);
             introNickCode.introNick(nick);
             introNickCode.showInterface();
 
-            nick = introNickCode.getNick();
-            System.out.println(nick);
+            //nick = introNickCode.getNick();
+            //System.out.println(nick);
 
-            oos.writeObject(nick);
-            oos.flush();
+            //oos.writeObject(nick);
+            //oos.flush();
 
 
 
-            System.out.println("Do you want to join or create a game? join or create");
+            /*System.out.println("Do you want to join or create a game? join or create");
             yesNo = entrada.nextLine();
             GameAction gameAction = null;
             if (yesNo.equalsIgnoreCase("join")) {
@@ -58,10 +58,10 @@ public class Client implements Serializable{
             }
             else if (yesNo.equalsIgnoreCase("create")) {
                 createRoom();
-            }
+            }*/
 
 
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -90,15 +90,15 @@ public class Client implements Serializable{
                     //Acede a pantalla party
                     System.out.println();
                     //20 preguntas bucle
-                        //Recojo pregunta
-                        //Envio pregunta
+                    //Recojo pregunta
+                    //Envio pregunta
 
                     //Recibo stats
 
                 }else{
                     //20 preguntas bucle
-                        //Recojo pregunta
-                        //Envio pregunta
+                    //Recojo pregunta
+                    //Envio pregunta
 
                     //Recibo stats
 

@@ -1,5 +1,9 @@
 package com.dist.game.client.gui;
 
+import com.dist.game.share.model.Answer;
+import com.dist.game.share.model.Question;
+import com.dist.game.share.model.Stats;
+
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
@@ -17,6 +21,10 @@ import java.awt.Insets;
 import javax.swing.JInternalFrame;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.Map;
 import javax.swing.JLabel;
 
 public class GameRoom extends JFrame {
@@ -26,8 +34,24 @@ public class GameRoom extends JFrame {
     private String nick;
     private String codeRoom;
 
-    public GameRoom() {
 
+    private ObjectInputStream ois;
+    private ObjectOutputStream oos;
+
+    private JButton btnAnswer1;
+    private JButton btnAnswer2;
+    private JButton btnAnswer3;
+    private JButton btnAnswer4;
+    private JLabel txtpnPregunta;
+
+    private Question question;
+
+    private int answered;
+
+    public GameRoom(ObjectInputStream ois, ObjectOutputStream oos, String nick) {
+        this.ois = ois;
+        this.oos = oos;
+        this.nick = nick;
         setResizable(false);
         setTitle("Preguntados");
         setBounds(100, 100, 450, 300);
@@ -35,11 +59,9 @@ public class GameRoom extends JFrame {
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         GridBagLayout gbl_contentPane = new GridBagLayout();
-        gbl_contentPane.rowWeights = new double[] { 1.0, 1.0 };
-        gbl_contentPane.columnWeights = new double[] { 1.0, 1.0, 1.0 };
+        gbl_contentPane.rowWeights = new double[]{1.0, 1.0};
+        gbl_contentPane.columnWeights = new double[]{1.0, 1.0, 1.0};
         contentPane.setLayout(gbl_contentPane);
-
-
     }
 
     public void gameRoomParty() {
@@ -130,6 +152,8 @@ public class GameRoom extends JFrame {
     }
 
     public void gameRoomSpeed() {
+        contentPane.removeAll();
+
         JPanel panel_2 = new JPanel();
         GridBagConstraints gbc_panel_2 = new GridBagConstraints();
         gbc_panel_2.anchor = GridBagConstraints.NORTHWEST;
@@ -146,8 +170,8 @@ public class GameRoom extends JFrame {
         gbc_panel.gridy = 0;
         contentPane.add(panel, gbc_panel);
 
-        JTextPane txtpnPregunta = new JTextPane();
-        txtpnPregunta.setText("Pregunta");
+        txtpnPregunta = new JLabel();
+        txtpnPregunta.setText("");
         panel.add(txtpnPregunta);
 
         JPanel panel_3 = new JPanel();
@@ -176,16 +200,16 @@ public class GameRoom extends JFrame {
         contentPane.add(panel_1, gbc_panel_1);
         panel_1.setLayout(new GridLayout(2, 2, 0, 0));
 
-        JButton btnAnswer1 = new JButton("Respuesta 1");
+        btnAnswer1 = new JButton("");
         panel_1.add(btnAnswer1);
 
-        JButton btnAnswer2 = new JButton("Respuesta 2");
+        btnAnswer2 = new JButton("");
         panel_1.add(btnAnswer2);
 
-        JButton btnAnswer3 = new JButton("Respuesta 3");
+        btnAnswer3 = new JButton("");
         panel_1.add(btnAnswer3);
 
-        JButton btnAnswer4 = new JButton("Respuesta 4");
+        btnAnswer4 = new JButton("");
         panel_1.add(btnAnswer4);
 
         JPanel panel_5 = new JPanel();
@@ -195,6 +219,68 @@ public class GameRoom extends JFrame {
         gbc_panel_5.gridy = 1;
         contentPane.add(panel_5, gbc_panel_5);
 
+        btnAnswer1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sendAnswer(0);
+            }
+        });
+        btnAnswer2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sendAnswer(1);
+            }
+        });
+        btnAnswer3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sendAnswer(2);
+            }
+        });
+        btnAnswer4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sendAnswer(3);
+            }
+        });
+        nextQuestion();
+    }
+
+    private void nextQuestion(){
+        // GET Question
+        try {
+            question = (Question) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        this.txtpnPregunta.setText(question.getText());
+        this.btnAnswer1.setText(question.getAnswers().get(0).getText());
+        this.btnAnswer2.setText(question.getAnswers().get(1).getText());
+        this.btnAnswer3.setText(question.getAnswers().get(2).getText());
+        this.btnAnswer4.setText(question.getAnswers().get(3).getText());
+
+    }
+    private void sendAnswer(int i) {
+        try {
+            answered++;
+            this.oos.writeObject(question.getAnswers().get(i));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(answered < 20) {
+            this.nextQuestion();
+        }else{
+            this.showStats();
+        }
+    }
+
+    private void showStats(){
+        try {
+            Map<String, Stats> stats = (Map<String, Stats>) this.ois.readObject();
+            System.out.println(stats.size());
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getNick() {
