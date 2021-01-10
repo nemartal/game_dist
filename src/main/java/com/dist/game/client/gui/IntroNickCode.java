@@ -1,5 +1,8 @@
 package com.dist.game.client.gui;
 
+import com.dist.game.share.model.GameAction;
+import com.dist.game.share.model.GameType;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridBagLayout;
@@ -16,6 +19,8 @@ public class IntroNickCode extends JFrame {
     private JPanel contentPane;
     private String nick;
     private String codeRoom;
+    private GameType tipoJuego;
+
 
     private JTextField textField;
 
@@ -92,15 +97,19 @@ public class IntroNickCode extends JFrame {
         try {
             System.out.println("Enviando code: " + code);
             oos.writeObject(code);
-            openGameRoom();
-        } catch (IOException e) {
+            tipoJuego = (GameType) ois.readObject();
+            if(tipoJuego.equals(GameType.PARTY)){
+                openGameRoomParty();
+            }else{
+                openGameRoomSpeed();
+            }
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
     // Si queremos guardar el codigo de sala
-    public void introCodeRoom(String codeRoom) {
-        this.codeRoom = codeRoom;
+    public void introCodeRoom() {
 
         JTextPane txtpnPorFavorItroduzca = new JTextPane();
         txtpnPorFavorItroduzca.setText("Por favor itroduzca un codigo para poder comenzar el juego");
@@ -183,9 +192,16 @@ public class IntroNickCode extends JFrame {
         setCodeRoom(textField.getText());
     }
 
-    public void openGameRoom() {
+    public void openGameRoomSpeed() {
         closeInterface();
         GameRoom gs = new GameRoom(ois, oos, getNick());
+        gs.gameRoomSpeed();
+        gs.showInterface();
+    }
+    public void openGameRoomParty() {
+        closeInterface();
+        GameRoom gs = new GameRoom(ois, oos, getNick());
+        gs.gameRoomParty();
         gs.showInterface();
     }
 

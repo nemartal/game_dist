@@ -139,7 +139,7 @@ public class CreateEnterRoom extends JFrame  {
     public void openGameRoomEnter() {
         closeInterface();
         IntroNickCode inc = new IntroNickCode(ois, oos);
-        inc.introCodeRoom(getCodeRoom());
+        inc.introCodeRoom();
         inc.showInterface();
     }
 
