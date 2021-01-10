@@ -9,6 +9,7 @@ import com.dist.game.share.model.GameType;
 import com.dist.game.share.model.Question;
 import com.dist.game.share.model.Stats;
 
+import java.io.IOException;
 import java.util.Map;
 
 
@@ -25,30 +26,37 @@ public class GameControllerSpeed extends GameController {
     }
 
     private void play(Player player) {
+
         for (Question question : this.questions) {
-            player.sendQuestion(question);
-            Answer answer = player.awaitAnswer();
+            try {
+                player.sendQuestion(question);
+                Answer answer = player.awaitAnswer();
 
-            Stats stats = this.stats.get(player.getId());
-            boolean isRight = false;
-            for (Answer ans : question.getAnswers()) {
-                if (ans.getId().equals(answer.getId()) && ans.isRight()) {
-                    isRight = true;
-                    break;
+                Stats stats = this.stats.get(player.getId());
+                boolean isRight = false;
+                for (Answer ans : question.getAnswers()) {
+                    if (ans.getId().equals(answer.getId()) && ans.isRight()) {
+                        isRight = true;
+                        break;
+                    }
                 }
-            }
 
-            if (isRight) {
-                stats.addRight();
-            } else {
-                stats.addWrong();
+                if (isRight) {
+                    stats.addRight();
+                } else {
+                    stats.addWrong();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
         try {
             this.waitToFinish();
-        }catch (Exception ignored){}
+            player.sendStats(this.stats);
+        } catch (Exception ignored) {
+        }
 
-        player.sendStats(this.stats);
+
     }
 
     private void waitToFinish() throws InterruptedException {
