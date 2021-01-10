@@ -88,6 +88,16 @@ public class IntroNickCode extends JFrame {
         }
     }
 
+    public void sendCode(String code) {
+        try {
+            System.out.println("Enviando code: " + code);
+            oos.writeObject(code);
+            openGameRoom();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     // Si queremos guardar el codigo de sala
     public void introCodeRoom(String codeRoom) {
         this.codeRoom = codeRoom;
@@ -119,7 +129,7 @@ public class IntroNickCode extends JFrame {
         JButton btnNewButton = new JButton("Acceder");
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                openGameRoom();
+                sendCode(textField.getText());
             }
         });
         panel.add(btnNewButton);
@@ -174,9 +184,9 @@ public class IntroNickCode extends JFrame {
     }
 
     public void openGameRoom() {
-        //closeInterface();
-        //GameRoom gs = new GameRoom();
-        //gs.showInterface();
+        closeInterface();
+        GameRoom gs = new GameRoom(ois, oos, getNick());
+        gs.showInterface();
     }
 
     public void openCreateEnterRoom() {

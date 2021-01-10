@@ -130,17 +130,17 @@ public class CreateEnterRoom extends JFrame  {
     //Acceso a la sala IntroNick para volver atrás
     public void openIntroNickInterface() {
         closeInterface();
-        //IntroNickCode in = new IntroNickCode();
-        //in.introNick(getNick());
-        //in.showInterface();
+        IntroNickCode in = new IntroNickCode(ois, oos);
+        in.introNick(getNick());
+        in.showInterface();
     }
 
     //Acceso a sala ya existente
     public void openGameRoomEnter() {
         closeInterface();
-        //IntroNickCode inc = new IntroNickCode();
-        //inc.introCodeRoom(getCodeRoom());
-        //inc.showInterface();
+        IntroNickCode inc = new IntroNickCode(ois, oos);
+        inc.introCodeRoom(getCodeRoom());
+        inc.showInterface();
     }
 
     //Acceso a elegir tipo juego
