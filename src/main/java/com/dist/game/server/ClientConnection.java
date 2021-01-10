@@ -60,6 +60,9 @@ public class ClientConnection extends Thread {
                     os.close();
             } catch (IOException e) {
             }
+            if (this.gc != null && this.player != null) {
+                this.gc.exit(player);
+            }
         }
     }
 

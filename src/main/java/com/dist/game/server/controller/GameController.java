@@ -40,6 +40,12 @@ public abstract class GameController {
         stats.put(player.getId(), new Stats());
     }
 
+
+    public synchronized void exit(Player player){
+        this.players.remove(player);
+        this.stats.remove(player.getId());
+    }
+
     public abstract void play(Player player);
 
     public String getId() {
