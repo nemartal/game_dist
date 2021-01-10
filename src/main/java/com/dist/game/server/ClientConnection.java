@@ -88,10 +88,9 @@ public class ClientConnection extends Thread {
                 // Send game id
                 this.oos.writeObject(this.gc.getId());
             }
+            this.oos.writeObject(this.gc.getType());
             System.out.println("# Uniendose");
             this.gc.join(this.player);
-            // Send Game Type
-            this.oos.writeObject(this.gc.getType());
         } catch (GameNotFoundException | GameMaxUsersException | GameUserAlreadyJoinedException e) {
             this.oos.writeObject(e);
             this.createOrJoin();
