@@ -57,8 +57,7 @@ public class GameRoom extends JFrame {
         gbc_panel_2.gridy = 0;
         contentPane.add(panel_2, gbc_panel_2);
 
-        JTextPane txtPlayer1 = new JTextPane();
-        txtPlayer1.setEditable(false);
+        JLabel txtPlayer1 = new JLabel();
         txtPlayer1.setText("Jugador 1");
         panel_2.add(txtPlayer1);
 
@@ -70,7 +69,7 @@ public class GameRoom extends JFrame {
         gbc_panel.gridy = 0;
         contentPane.add(panel, gbc_panel);
 
-        JTextPane txtpnPregunta = new JTextPane();
+        JLabel txtpnPregunta = new JLabel();
         txtpnPregunta.setText("Pregunta");
         panel.add(txtpnPregunta);
 
@@ -82,8 +81,7 @@ public class GameRoom extends JFrame {
         gbc_panel_3.gridy = 0;
         contentPane.add(panel_3, gbc_panel_3);
 
-        JTextPane txtPlayer2 = new JTextPane();
-        txtPlayer2.setEditable(false);
+        JLabel txtPlayer2 = new JLabel();
         txtPlayer2.setText("Jugador 2");
         panel_3.add(txtPlayer2);
 
@@ -95,8 +93,7 @@ public class GameRoom extends JFrame {
         gbc_panel_4.gridy = 1;
         contentPane.add(panel_4, gbc_panel_4);
 
-        JTextPane txtPlayer3 = new JTextPane();
-        txtPlayer3.setEditable(false);
+        JLabel txtPlayer3 = new JLabel();
         txtPlayer3.setText("Jugador 3");
         panel_4.add(txtPlayer3);
 
@@ -128,8 +125,7 @@ public class GameRoom extends JFrame {
         gbc_panel_5.gridy = 1;
         contentPane.add(panel_5, gbc_panel_5);
 
-        JTextPane txtPlayer4 = new JTextPane();
-        txtPlayer4.setEditable(false);
+        JLabel txtPlayer4 = new JLabel();
         txtPlayer4.setText("Jugador 4");
         panel_5.add(txtPlayer4);
 
@@ -253,6 +249,7 @@ public class GameRoom extends JFrame {
         if(answered < 20) {
             this.nextQuestion();
         }else{
+            closeInterface();
             StatisticsRoom stats = new StatisticsRoom(ois, oos);
             stats.showInterface();
 

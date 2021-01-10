@@ -6,12 +6,8 @@ import com.dist.game.share.model.GameType;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextPane;
-import javax.swing.JTextField;
-import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.CardLayout;
 import java.awt.GridBagLayout;
@@ -49,7 +45,7 @@ public class GameSelection extends JFrame {
         GridBagLayout gbl_contentPane = new GridBagLayout();
         contentPane.setLayout(gbl_contentPane);
 
-        JTextPane txtpnSeleccioneElJuego = new JTextPane();
+        JLabel txtpnSeleccioneElJuego = new JLabel();
         txtpnSeleccioneElJuego.setText("Seleccione el juego al que desea acceder");
         GridBagConstraints gbc_txtpnSeleccioneElJuego = new GridBagConstraints();
         gbc_txtpnSeleccioneElJuego.insets = new Insets(0, 0, 5, 4);
