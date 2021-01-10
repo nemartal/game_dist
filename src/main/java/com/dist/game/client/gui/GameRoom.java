@@ -1,31 +1,15 @@
 package com.dist.game.client.gui;
 
-import com.dist.game.share.model.Answer;
 import com.dist.game.share.model.Question;
-import com.dist.game.share.model.Stats;
 
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextPane;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.Color;
-import java.awt.CardLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.JInternalFrame;
-import java.awt.event.ActionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Map;
-import javax.swing.JLabel;
 
 public class GameRoom extends JFrame {
 
@@ -269,18 +253,13 @@ public class GameRoom extends JFrame {
         if(answered < 20) {
             this.nextQuestion();
         }else{
-            this.showStats();
+            StatisticsRoom stats = new StatisticsRoom(ois, oos);
+            stats.showInterface();
+
         }
     }
 
-    private void showStats(){
-        try {
-            Map<String, Stats> stats = (Map<String, Stats>) this.ois.readObject();
-            System.out.println(stats.size());
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     public String getNick() {
         return nick;

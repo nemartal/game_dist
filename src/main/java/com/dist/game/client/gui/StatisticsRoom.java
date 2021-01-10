@@ -1,10 +1,16 @@
 package com.dist.game.client.gui;
 
 
+import com.dist.game.share.model.Stats;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.Map;
 
 public class StatisticsRoom extends JFrame {
 
@@ -14,7 +20,18 @@ public class StatisticsRoom extends JFrame {
 
     private JTextField textField;
 
-    public StatisticsRoom() {
+    private ObjectInputStream ois;
+    private ObjectOutputStream oos;
+
+    private Map<String, Stats> stats;
+    private Map<String,String> player ;
+
+    public StatisticsRoom(ObjectInputStream ois, ObjectOutputStream oos) {
+
+        this.ois = ois;
+        this.oos = oos;
+
+        showStats();
 
         setResizable(false);
         setTitle("Preguntados");
@@ -44,7 +61,8 @@ public class StatisticsRoom extends JFrame {
         gbl_statsPlayer1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
         statsPlayer1.setLayout(gbl_statsPlayer1);
 
-        JLabel lblNewLabel = new JLabel("  Jugador1");
+
+        JLabel lblNewLabel = new JLabel("  "+);
         GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
         gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
         gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
@@ -224,6 +242,17 @@ public class StatisticsRoom extends JFrame {
 
     public void closeInterface() {
         setVisible(false);
+    }
+
+    private void showStats(){
+        try {
+            //<Id, Stats>
+            Map<String, Stats> stats = (Map<String, Stats>) this.ois.readObject();
+            // <Id,nick>
+            Map<String,String> player = (Map<String, String>) this.ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 }
