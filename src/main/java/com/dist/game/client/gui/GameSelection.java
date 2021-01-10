@@ -145,7 +145,8 @@ public class GameSelection extends JFrame {
             oos.writeObject(GameAction.CREATE);
             oos.writeObject(GameType.SPEED);
             String roomId = (String) ois.readObject();
-
+            System.out.println(roomId);
+            GameType type = (GameType) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
