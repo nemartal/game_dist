@@ -10,7 +10,9 @@ import java.awt.*;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Map;
+import java.util.List;
 
 public class StatisticsRoom extends JFrame {
 
@@ -24,14 +26,21 @@ public class StatisticsRoom extends JFrame {
     private ObjectOutputStream oos;
 
     private Map<String, Stats> stats;
-    private Map<String,String> player ;
+    private Map<String, String> players;
 
     public StatisticsRoom(ObjectInputStream ois, ObjectOutputStream oos) {
 
         this.ois = ois;
         this.oos = oos;
 
-        showStats();
+        try {
+            //<Id, Stats>
+            stats = (Map<String, Stats>) this.ois.readObject();
+            // <Id,nick>
+            players = (Map<String, String>) this.ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         setResizable(false);
         setTitle("Preguntados");
@@ -46,100 +55,118 @@ public class StatisticsRoom extends JFrame {
         gbl_contentPane.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
         contentPane.setLayout(gbl_contentPane);
 
-        JPanel statsPlayer1 = new JPanel();
-        statsPlayer1.setBorder(new LineBorder(new Color(0, 0, 0)));
-        GridBagConstraints gbc_statsPlayer1 = new GridBagConstraints();
-        gbc_statsPlayer1.insets = new Insets(0, 0, 5, 5);
-        gbc_statsPlayer1.fill = GridBagConstraints.BOTH;
-        gbc_statsPlayer1.gridx = 0;
-        gbc_statsPlayer1.gridy = 0;
-        contentPane.add(statsPlayer1, gbc_statsPlayer1);
-        GridBagLayout gbl_statsPlayer1 = new GridBagLayout();
-        gbl_statsPlayer1.columnWidths = new int[]{0, 0, 0, 0, 0};
-        gbl_statsPlayer1.rowHeights = new int[]{0, 0, 0, 0, 0};
-        gbl_statsPlayer1.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-        gbl_statsPlayer1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-        statsPlayer1.setLayout(gbl_statsPlayer1);
+
+        List<String> player_ids = new ArrayList<String>(players.keySet());
+
+        if (players.size() > 0) {
+
+            String player_id = player_ids.get(0);
+            String player_nickname = players.get(player_id);
+            Stats player_stats = stats.get(player_id);
+
+            JPanel statsPlayer1 = new JPanel();
+            statsPlayer1.setBorder(new LineBorder(new Color(0, 0, 0)));
+            GridBagConstraints gbc_statsPlayer1 = new GridBagConstraints();
+            gbc_statsPlayer1.insets = new Insets(0, 0, 5, 5);
+            gbc_statsPlayer1.fill = GridBagConstraints.BOTH;
+            gbc_statsPlayer1.gridx = 0;
+            gbc_statsPlayer1.gridy = 0;
+            contentPane.add(statsPlayer1, gbc_statsPlayer1);
+            GridBagLayout gbl_statsPlayer1 = new GridBagLayout();
+            gbl_statsPlayer1.columnWidths = new int[]{0, 0, 0, 0, 0};
+            gbl_statsPlayer1.rowHeights = new int[]{0, 0, 0, 0, 0};
+            gbl_statsPlayer1.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+            gbl_statsPlayer1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+            statsPlayer1.setLayout(gbl_statsPlayer1);
 
 
-        JLabel lblNewLabel = new JLabel("  "+);
-        GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-        gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
-        gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-        gbc_lblNewLabel.gridx = 0;
-        gbc_lblNewLabel.gridy = 0;
-        statsPlayer1.add(lblNewLabel, gbc_lblNewLabel);
+            JLabel lblNewLabel = new JLabel("  " + player_nickname);
+            GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+            gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
+            gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+            gbc_lblNewLabel.gridx = 0;
+            gbc_lblNewLabel.gridy = 0;
+            statsPlayer1.add(lblNewLabel, gbc_lblNewLabel);
 
-        JLabel lblNewLabel_1 = new JLabel("  Respuestas correctas: ");
-        GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-        gbc_lblNewLabel_1.anchor = GridBagConstraints.WEST;
-        gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
-        gbc_lblNewLabel_1.gridx = 0;
-        gbc_lblNewLabel_1.gridy = 1;
-        statsPlayer1.add(lblNewLabel_1, gbc_lblNewLabel_1);
+            JLabel lblNewLabel_1 = new JLabel("  Respuestas correctas: " + player_stats.getRight());
+            GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+            gbc_lblNewLabel_1.anchor = GridBagConstraints.WEST;
+            gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
+            gbc_lblNewLabel_1.gridx = 0;
+            gbc_lblNewLabel_1.gridy = 1;
+            statsPlayer1.add(lblNewLabel_1, gbc_lblNewLabel_1);
 
-        JLabel lblNewLabel_2 = new JLabel("  Respuestas Incorrectas: ");
-        GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
-        gbc_lblNewLabel_2.anchor = GridBagConstraints.WEST;
-        gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
-        gbc_lblNewLabel_2.gridx = 0;
-        gbc_lblNewLabel_2.gridy = 2;
-        statsPlayer1.add(lblNewLabel_2, gbc_lblNewLabel_2);
+            JLabel lblNewLabel_2 = new JLabel("  Respuestas Incorrectas: " + player_stats.getWrong());
+            GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
+            gbc_lblNewLabel_2.anchor = GridBagConstraints.WEST;
+            gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
+            gbc_lblNewLabel_2.gridx = 0;
+            gbc_lblNewLabel_2.gridy = 2;
+            statsPlayer1.add(lblNewLabel_2, gbc_lblNewLabel_2);
 
-        JLabel lblNewLabel_12 = new JLabel("  Tiempo transcurrido: ");
-        GridBagConstraints gbc_lblNewLabel_12 = new GridBagConstraints();
-        gbc_lblNewLabel_12.anchor = GridBagConstraints.WEST;
-        gbc_lblNewLabel_12.insets = new Insets(0, 0, 0, 5);
-        gbc_lblNewLabel_12.gridx = 0;
-        gbc_lblNewLabel_12.gridy = 3;
-        statsPlayer1.add(lblNewLabel_12, gbc_lblNewLabel_12);
+            JLabel lblNewLabel_12 = new JLabel("  Tiempo transcurrido: " + (player_stats.getFinish().getTime() - player_stats.getStart().getTime()) / 1000);
+            GridBagConstraints gbc_lblNewLabel_12 = new GridBagConstraints();
+            gbc_lblNewLabel_12.anchor = GridBagConstraints.WEST;
+            gbc_lblNewLabel_12.insets = new Insets(0, 0, 0, 5);
+            gbc_lblNewLabel_12.gridx = 0;
+            gbc_lblNewLabel_12.gridy = 3;
+            statsPlayer1.add(lblNewLabel_12, gbc_lblNewLabel_12);
+        }
 
-        JPanel statsPlayer2 = new JPanel();
-        statsPlayer2.setBorder(new LineBorder(new Color(0, 0, 0)));
-        GridBagConstraints gbc_statsPlayer2 = new GridBagConstraints();
-        gbc_statsPlayer2.insets = new Insets(0, 0, 5, 0);
-        gbc_statsPlayer2.fill = GridBagConstraints.BOTH;
-        gbc_statsPlayer2.gridx = 1;
-        gbc_statsPlayer2.gridy = 0;
-        contentPane.add(statsPlayer2, gbc_statsPlayer2);
-        GridBagLayout gbl_statsPlayer2 = new GridBagLayout();
-        gbl_statsPlayer2.columnWidths = new int[]{0, 0};
-        gbl_statsPlayer2.rowHeights = new int[]{0, 0, 0, 0, 0};
-        gbl_statsPlayer2.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-        gbl_statsPlayer2.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-        statsPlayer2.setLayout(gbl_statsPlayer2);
+        /////////////////////
+        if (players.size() > 1) {
 
-        JLabel lblNewLabel_3 = new JLabel("  Jugador2");
-        GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
-        gbc_lblNewLabel_3.anchor = GridBagConstraints.WEST;
-        gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 0);
-        gbc_lblNewLabel_3.gridx = 0;
-        gbc_lblNewLabel_3.gridy = 0;
-        statsPlayer2.add(lblNewLabel_3, gbc_lblNewLabel_3);
+            String player_id = player_ids.get(1);
+            String player_nickname = players.get(player_id);
+            Stats player_stats = stats.get(player_id);
+            JPanel statsPlayer2 = new JPanel();
+            statsPlayer2.setBorder(new LineBorder(new Color(0, 0, 0)));
+            GridBagConstraints gbc_statsPlayer2 = new GridBagConstraints();
+            gbc_statsPlayer2.insets = new Insets(0, 0, 5, 0);
+            gbc_statsPlayer2.fill = GridBagConstraints.BOTH;
+            gbc_statsPlayer2.gridx = 1;
+            gbc_statsPlayer2.gridy = 0;
+            contentPane.add(statsPlayer2, gbc_statsPlayer2);
+            GridBagLayout gbl_statsPlayer2 = new GridBagLayout();
+            gbl_statsPlayer2.columnWidths = new int[]{0, 0};
+            gbl_statsPlayer2.rowHeights = new int[]{0, 0, 0, 0, 0};
+            gbl_statsPlayer2.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+            gbl_statsPlayer2.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+            statsPlayer2.setLayout(gbl_statsPlayer2);
 
-        JLabel lblNewLabel_4 = new JLabel("  Respuestas correctas: ");
-        GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
-        gbc_lblNewLabel_4.anchor = GridBagConstraints.WEST;
-        gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 0);
-        gbc_lblNewLabel_4.gridx = 0;
-        gbc_lblNewLabel_4.gridy = 1;
-        statsPlayer2.add(lblNewLabel_4, gbc_lblNewLabel_4);
 
-        JLabel lblNewLabel_5 = new JLabel("  Respuestas Incorrectas: ");
-        GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
-        gbc_lblNewLabel_5.anchor = GridBagConstraints.WEST;
-        gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 0);
-        gbc_lblNewLabel_5.gridx = 0;
-        gbc_lblNewLabel_5.gridy = 2;
-        statsPlayer2.add(lblNewLabel_5, gbc_lblNewLabel_5);
+            JLabel lblNewLabel_3 = new JLabel("  "+player_nickname);
+            GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
+            gbc_lblNewLabel_3.anchor = GridBagConstraints.WEST;
+            gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 0);
+            gbc_lblNewLabel_3.gridx = 0;
+            gbc_lblNewLabel_3.gridy = 0;
+            statsPlayer2.add(lblNewLabel_3, gbc_lblNewLabel_3);
 
-        JLabel lblNewLabel_14 = new JLabel("  Tiempo transcurrido: ");
-        GridBagConstraints gbc_lblNewLabel_14 = new GridBagConstraints();
-        gbc_lblNewLabel_14.anchor = GridBagConstraints.WEST;
-        gbc_lblNewLabel_14.gridx = 0;
-        gbc_lblNewLabel_14.gridy = 3;
-        statsPlayer2.add(lblNewLabel_14, gbc_lblNewLabel_14);
+            JLabel lblNewLabel_4 = new JLabel("  Respuestas correctas: " + player_stats.getRight());
+            GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
+            gbc_lblNewLabel_4.anchor = GridBagConstraints.WEST;
+            gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 0);
+            gbc_lblNewLabel_4.gridx = 0;
+            gbc_lblNewLabel_4.gridy = 1;
+            statsPlayer2.add(lblNewLabel_4, gbc_lblNewLabel_4);
 
+            JLabel lblNewLabel_5 = new JLabel("  Respuestas Incorrectas: " + player_stats.getWrong());
+            GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
+            gbc_lblNewLabel_5.anchor = GridBagConstraints.WEST;
+            gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 0);
+            gbc_lblNewLabel_5.gridx = 0;
+            gbc_lblNewLabel_5.gridy = 2;
+            statsPlayer2.add(lblNewLabel_5, gbc_lblNewLabel_5);
+
+            JLabel lblNewLabel_14 = new JLabel("  Tiempo transcurrido: "+ (player_stats.getFinish().getTime() - player_stats.getStart().getTime()) / 1000);
+            GridBagConstraints gbc_lblNewLabel_14 = new GridBagConstraints();
+            gbc_lblNewLabel_14.anchor = GridBagConstraints.WEST;
+            gbc_lblNewLabel_14.gridx = 0;
+            gbc_lblNewLabel_14.gridy = 3;
+            statsPlayer2.add(lblNewLabel_14, gbc_lblNewLabel_14);
+
+        }
         JPanel statsPlayer3 = new JPanel();
         statsPlayer3.setBorder(new LineBorder(new Color(0, 0, 0)));
         GridBagConstraints gbc_statsPlayer3 = new GridBagConstraints();
@@ -234,7 +261,6 @@ public class StatisticsRoom extends JFrame {
     }
 
 
-
     public void showInterface() {
         setVisible(true);
 
@@ -244,15 +270,8 @@ public class StatisticsRoom extends JFrame {
         setVisible(false);
     }
 
-    private void showStats(){
-        try {
-            //<Id, Stats>
-            Map<String, Stats> stats = (Map<String, Stats>) this.ois.readObject();
-            // <Id,nick>
-            Map<String,String> player = (Map<String, String>) this.ois.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+    private void showStats() {
+
     }
 
 }
