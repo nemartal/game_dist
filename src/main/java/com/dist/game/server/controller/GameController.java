@@ -27,8 +27,6 @@ public class GameController {
         this.id = (new RandomString(5)).nextString();
         this.type = type;
         this.stats = new ConcurrentHashMap<>();
-
-        // TODO: Create questions
     }
 
     public synchronized void join(Player player) throws GameMaxUsersException, GameUserAlreadyJoinedException {

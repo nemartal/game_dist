@@ -4,6 +4,7 @@ import com.dist.game.share.model.Answer;
 import com.dist.game.share.model.Question;
 import com.dist.game.share.model.Stats;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Map;
@@ -23,16 +24,16 @@ public class Player {
         this.nickname = nickname;
     }
 
-    public void sendQuestion(Question question) {
-
+    public void sendQuestion(Question question) throws IOException {
+        this.oos.writeObject(question);
     }
 
-    public void sendStats(Map<String, Stats> stats){
-
+    public void sendStats(Map<String, Stats> stats) throws IOException {
+        this.oos.writeObject(stats);
     }
 
-    public Answer awaitAnswer() {
-        return null;
+    public Answer awaitAnswer() throws IOException, ClassNotFoundException {
+        return (Answer) this.ios.readObject();
     }
 
     public String getId() {
