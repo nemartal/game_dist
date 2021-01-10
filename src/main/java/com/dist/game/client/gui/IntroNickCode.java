@@ -113,7 +113,7 @@ public class IntroNickCode extends JFrame {
     // Si queremos guardar el codigo de sala
     public void introCodeRoom() {
 
-        JTextPane txtpnPorFavorItroduzca = new JTextPane();
+        JLabel txtpnPorFavorItroduzca = new JLabel();
         txtpnPorFavorItroduzca.setText("Por favor itroduzca un codigo para poder comenzar el juego");
         GridBagConstraints gbc_txtpnPorFavorItroduzca = new GridBagConstraints();
         gbc_txtpnPorFavorItroduzca.insets = new Insets(0, 0, 5, 4);
