@@ -2,9 +2,11 @@ package com.dist.game.server.model;
 
 import com.dist.game.share.model.Answer;
 import com.dist.game.share.model.Question;
+import com.dist.game.share.model.Stats;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -22,6 +24,10 @@ public class Player {
     }
 
     public void sendQuestion(Question question) {
+
+    }
+
+    public void sendStats(Map<String, Stats> stats){
 
     }
 

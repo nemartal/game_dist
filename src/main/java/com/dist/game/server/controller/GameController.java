@@ -9,9 +9,9 @@ import com.dist.game.share.model.Stats;
 import com.dist.game.share.util.RandomString;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class GameController {
 
@@ -26,7 +26,7 @@ public class GameController {
         this.players = new ArrayList<>();
         this.id = (new RandomString(5)).nextString();
         this.type = type;
-        this.stats = new HashMap<>();
+        this.stats = new ConcurrentHashMap<>();
 
         // TODO: Create questions
     }

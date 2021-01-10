@@ -9,6 +9,8 @@ import com.dist.game.share.model.GameType;
 import com.dist.game.share.model.Question;
 import com.dist.game.share.model.Stats;
 
+import java.util.Map;
+
 
 public class GameControllerSpeed extends GameController {
 
@@ -42,7 +44,29 @@ public class GameControllerSpeed extends GameController {
                 stats.addWrong();
             }
         }
-        // Comprobar si han terminado todos
-        // Enviar estadisticas
+        try {
+            this.waitToFinish();
+        }catch (Exception ignored){}
+
+        player.sendStats(this.stats);
+    }
+
+    private void waitToFinish() throws InterruptedException {
+        int max = 60;
+        int n = 0;
+        boolean end = false;
+        while (n <= max && !end) {
+            boolean allFinish = true;
+            n++;
+            Thread.sleep(1000);
+            for (Map.Entry<String, Stats> stats : this.stats.entrySet()) {
+                if (stats.getValue().getRight() + stats.getValue().getWrong() < 20) {
+                    allFinish = false;
+                    break;
+                }
+            }
+            if (allFinish) end = true;
+        }
+
     }
 }
