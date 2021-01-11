@@ -146,12 +146,15 @@ public class GameSelection extends JFrame {
     //Acceso a la sala de juego Speed
     public void openGameRoomSpeed() {
         closeInterface();
+        CodeRoomInfo codeRoomInfo;
         try {
             oos.writeObject(GameAction.CREATE);
             oos.writeObject(GameType.SPEED);
             String roomId = (String) ois.readObject();
             System.out.println(roomId);
             GameType type = (GameType) ois.readObject();
+            codeRoomInfo = new CodeRoomInfo(roomId);
+            codeRoomInfo.showInterface();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
