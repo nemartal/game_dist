@@ -2,651 +2,210 @@
 <questions>
     <question>
         <id>1</id>
-        <text>Pregunta 1</text>
+        <text>¿Cuál de las sisguientes enfermedades ataca al higado?</text>
         <answers>
             <answer>
                 <id>1</id>
-                <text>Respuesta 1</text>
+                <text>Diabetes</text>
                 <correct>0</correct>
             </answer>
             <answer>
                 <id>2</id>
-                <text>Respuesta 2</text>
+                <text>Hepatitis</text>
                 <correct>1</correct>
             </answer>
             <answer>
                 <id>3</id>
-                <text>Respuesta 3</text>
+                <text>Artrósis</text>
                 <correct>0</correct>
             </answer>
             <answer>
                 <id>4</id>
-                <text>Respuesta 4</text>
+                <text>Cifoescoliosis</text>
                 <correct>0</correct>
             </answer>
         </answers>
     </question>
     <question>
-        <id>1</id>
-        <text>Pregunta 1</text>
+        <id>2</id>
+        <text>¿Cuál es el hueso más pequeño del cuerpo?</text>
         <answers>
             <answer>
                 <id>1</id>
-                <text>Respuesta 1</text>
+                <text>El yunque</text>
                 <correct>0</correct>
             </answer>
             <answer>
                 <id>2</id>
-                <text>Respuesta 2</text>
-                <correct>1</correct>
-            </answer>
-            <answer>
-                <id>3</id>
-                <text>Respuesta 3</text>
+                <text>La falange</text>
                 <correct>0</correct>
             </answer>
             <answer>
+                <id>3</id>
+                <text>El estribo</text>
+                <correct>1</correct>
+            </answer>
+            <answer>
                 <id>4</id>
-                <text>Respuesta 4</text>
+                <text>Ninguna es correcta</text>
                 <correct>0</correct>
             </answer>
         </answers>
     </question>
     <question>
-        <id>1</id>
-        <text>Pregunta 1</text>
+        <id>3</id>
+        <text>¿Qué estudia la icitología?</text>
         <answers>
             <answer>
                 <id>1</id>
-                <text>Respuesta 1</text>
+                <text>Los insectos</text>
                 <correct>0</correct>
             </answer>
             <answer>
                 <id>2</id>
-                <text>Respuesta 2</text>
-                <correct>1</correct>
+                <text>Las erupciones cutáneas</text>
+                <correct>0</correct>
             </answer>
             <answer>
                 <id>3</id>
-                <text>Respuesta 3</text>
+                <text>Las rocas</text>
                 <correct>0</correct>
             </answer>
             <answer>
                 <id>4</id>
-                <text>Respuesta 4</text>
+                <text>Los peces</text>
+                <correct>1</correct>
+            </answer>
+        </answers>
+    </question>
+    <question>
+        <id>4</id>
+        <text>¿Qué es un equino?</text>
+        <answers>
+            <answer>
+                <id>1</id>
+                <text>Los ratones
+                </text>
+                <correct>0</correct>
+            </answer>
+            <answer>
+                <id>2</id>
+                <text>Los gatos </text>
+                <correct>1</correct>
+            </answer>
+            <answer>
+                <id>3</id>
+                <text>Los gansos</text>
+                <correct>0</correct>
+            </answer>
+            <answer>
+                <id>4</id>
+                <text>Los cangrejos</text>
                 <correct>0</correct>
             </answer>
         </answers>
     </question>
     <question>
-        <id>1</id>
-        <text>Pregunta 1</text>
+        <id>5</id>
+        <text>¿Con qué otro nombre se conoce el ciclo del agua?</text>
         <answers>
             <answer>
                 <id>1</id>
-                <text>Respuesta 1</text>
+                <text>Ciclo natural</text>
                 <correct>0</correct>
             </answer>
             <answer>
                 <id>2</id>
-                <text>Respuesta 2</text>
-                <correct>1</correct>
-            </answer>
-            <answer>
-                <id>3</id>
-                <text>Respuesta 3</text>
+                <text>Ciclo hidropónico</text>
                 <correct>0</correct>
             </answer>
             <answer>
+                <id>3</id>
+                <text>Ciclo hidrológico</text>
+                <correct>1</correct>
+            </answer>
+            <answer>
                 <id>4</id>
-                <text>Respuesta 4</text>
+                <text>Ciclo acuoso</text>
                 <correct>0</correct>
             </answer>
         </answers>
     </question>
     <question>
-        <id>1</id>
-        <text>Pregunta 1</text>
+        <id>6</id>
+        <text>¿Por qué los cocodrilos mantienen la boca abierta durante largo rato?</text>
         <answers>
             <answer>
                 <id>1</id>
-                <text>Respuesta 1</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>2</id>
-                <text>Respuesta 2</text>
+                <text>Para calentarse</text>
                 <correct>1</correct>
             </answer>
             <answer>
+                <id>2</id>
+                <text>Para hacer la digestión</text>
+                <correct>0</correct>
+            </answer>
+            <answer>
                 <id>3</id>
-                <text>Respuesta 3</text>
+                <text>Para beber agua</text>
                 <correct>0</correct>
             </answer>
             <answer>
                 <id>4</id>
-                <text>Respuesta 4</text>
+                <text>Por si se cuela algo que puedan comerse</text>
                 <correct>0</correct>
             </answer>
         </answers>
     </question>
     <question>
-        <id>1</id>
-        <text>Pregunta 1</text>
+        <id>7</id>
+        <text>¿Qué tipo de mamífero es un conejo?</text>
         <answers>
             <answer>
                 <id>1</id>
-                <text>Respuesta 1</text>
+                <text>Roedor</text>
                 <correct>0</correct>
             </answer>
             <answer>
                 <id>2</id>
-                <text>Respuesta 2</text>
+                <text>Lagomorfo</text>
                 <correct>1</correct>
             </answer>
             <answer>
                 <id>3</id>
-                <text>Respuesta 3</text>
+                <text>Marsupial</text>
                 <correct>0</correct>
             </answer>
             <answer>
                 <id>4</id>
-                <text>Respuesta 4</text>
+                <text>Equino</text>
                 <correct>0</correct>
             </answer>
         </answers>
     </question>
     <question>
-        <id>1</id>
-        <text>Pregunta 1</text>
+        <id>8</id>
+        <text>¿Cuántos rayos gamma hay en una neurona?</text>
         <answers>
             <answer>
                 <id>1</id>
-                <text>Respuesta 1</text>
+                <text>Uno</text>
                 <correct>0</correct>
             </answer>
             <answer>
                 <id>2</id>
-                <text>Respuesta 2</text>
-                <correct>1</correct>
+                <text>Dos</text>
+                <correct>0</correct>
             </answer>
             <answer>
                 <id>3</id>
-                <text>Respuesta 3</text>
+                <text>De dos a tres</text>
                 <correct>0</correct>
             </answer>
             <answer>
                 <id>4</id>
-                <text>Respuesta 4</text>
-                <correct>0</correct>
-            </answer>
-        </answers>
-    </question>
-    <question>
-        <id>1</id>
-        <text>Pregunta 1</text>
-        <answers>
-            <answer>
-                <id>1</id>
-                <text>Respuesta 1</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>2</id>
-                <text>Respuesta 2</text>
+                <text>Ninguno</text>
                 <correct>1</correct>
-            </answer>
-            <answer>
-                <id>3</id>
-                <text>Respuesta 3</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>4</id>
-                <text>Respuesta 4</text>
-                <correct>0</correct>
-            </answer>
-        </answers>
-    </question>
-    <question>
-        <id>1</id>
-        <text>Pregunta 1</text>
-        <answers>
-            <answer>
-                <id>1</id>
-                <text>Respuesta 1</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>2</id>
-                <text>Respuesta 2</text>
-                <correct>1</correct>
-            </answer>
-            <answer>
-                <id>3</id>
-                <text>Respuesta 3</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>4</id>
-                <text>Respuesta 4</text>
-                <correct>0</correct>
-            </answer>
-        </answers>
-    </question>
-    <question>
-        <id>1</id>
-        <text>Pregunta 1</text>
-        <answers>
-            <answer>
-                <id>1</id>
-                <text>Respuesta 1</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>2</id>
-                <text>Respuesta 2</text>
-                <correct>1</correct>
-            </answer>
-            <answer>
-                <id>3</id>
-                <text>Respuesta 3</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>4</id>
-                <text>Respuesta 4</text>
-                <correct>0</correct>
-            </answer>
-        </answers>
-    </question>
-    <question>
-        <id>1</id>
-        <text>Pregunta 1</text>
-        <answers>
-            <answer>
-                <id>1</id>
-                <text>Respuesta 1</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>2</id>
-                <text>Respuesta 2</text>
-                <correct>1</correct>
-            </answer>
-            <answer>
-                <id>3</id>
-                <text>Respuesta 3</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>4</id>
-                <text>Respuesta 4</text>
-                <correct>0</correct>
-            </answer>
-        </answers>
-    </question>
-    <question>
-        <id>1</id>
-        <text>Pregunta 1</text>
-        <answers>
-            <answer>
-                <id>1</id>
-                <text>Respuesta 1</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>2</id>
-                <text>Respuesta 2</text>
-                <correct>1</correct>
-            </answer>
-            <answer>
-                <id>3</id>
-                <text>Respuesta 3</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>4</id>
-                <text>Respuesta 4</text>
-                <correct>0</correct>
-            </answer>
-        </answers>
-    </question>
-    <question>
-        <id>1</id>
-        <text>Pregunta 1</text>
-        <answers>
-            <answer>
-                <id>1</id>
-                <text>Respuesta 1</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>2</id>
-                <text>Respuesta 2</text>
-                <correct>1</correct>
-            </answer>
-            <answer>
-                <id>3</id>
-                <text>Respuesta 3</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>4</id>
-                <text>Respuesta 4</text>
-                <correct>0</correct>
-            </answer>
-        </answers>
-    </question>
-    <question>
-        <id>1</id>
-        <text>Pregunta 1</text>
-        <answers>
-            <answer>
-                <id>1</id>
-                <text>Respuesta 1</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>2</id>
-                <text>Respuesta 2</text>
-                <correct>1</correct>
-            </answer>
-            <answer>
-                <id>3</id>
-                <text>Respuesta 3</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>4</id>
-                <text>Respuesta 4</text>
-                <correct>0</correct>
-            </answer>
-        </answers>
-    </question>
-    <question>
-        <id>1</id>
-        <text>Pregunta 3333</text>
-        <answers>
-            <answer>
-                <id>1</id>
-                <text>Respuesta 1</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>2</id>
-                <text>Respuesta 2</text>
-                <correct>1</correct>
-            </answer>
-            <answer>
-                <id>3</id>
-                <text>Respuesta 3</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>4</id>
-                <text>Respuesta 4</text>
-                <correct>0</correct>
-            </answer>
-        </answers>
-    </question>
-    <question>
-        <id>1</id>
-        <text>Pregunta 2222</text>
-        <answers>
-            <answer>
-                <id>1</id>
-                <text>Respuesta 1</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>2</id>
-                <text>Respuesta 2</text>
-                <correct>1</correct>
-            </answer>
-            <answer>
-                <id>3</id>
-                <text>Respuesta 3</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>4</id>
-                <text>Respuesta 4</text>
-                <correct>0</correct>
-            </answer>
-        </answers>
-    </question>
-    <question>
-        <id>1</id>
-        <text>Pregunta 111</text>
-        <answers>
-            <answer>
-                <id>1</id>
-                <text>Respuesta 1</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>2</id>
-                <text>Respuesta 2</text>
-                <correct>1</correct>
-            </answer>
-            <answer>
-                <id>3</id>
-                <text>Respuesta 3</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>4</id>
-                <text>Respuesta 4</text>
-                <correct>0</correct>
-            </answer>
-        </answers>
-    </question>
-    <question>
-        <id>1</id>
-        <text>Pregunta 1</text>
-        <answers>
-            <answer>
-                <id>1</id>
-                <text>Respuesta 1</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>2</id>
-                <text>Respuesta 2</text>
-                <correct>1</correct>
-            </answer>
-            <answer>
-                <id>3</id>
-                <text>Respuesta 3</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>4</id>
-                <text>Respuesta 4</text>
-                <correct>0</correct>
-            </answer>
-        </answers>
-    </question>
-    <question>
-        <id>1</id>
-        <text>Pregunta ABC</text>
-        <answers>
-            <answer>
-                <id>1</id>
-                <text>Respuesta 1</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>2</id>
-                <text>Respuesta 2</text>
-                <correct>1</correct>
-            </answer>
-            <answer>
-                <id>3</id>
-                <text>Respuesta 2134sadf</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>4</id>
-                <text>Respuesta 4</text>
-                <correct>0</correct>
-            </answer>
-        </answers>
-    </question>
-    <question>
-        <id>1</id>
-        <text>Pregunta 1</text>
-        <answers>
-            <answer>
-                <id>1</id>
-                <text>Respuesta 1</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>2</id>
-                <text>Respuesta 2</text>
-                <correct>1</correct>
-            </answer>
-            <answer>
-                <id>3</id>
-                <text>Respuesta sfddfsgfggggg</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>4</id>
-                <text>Respuesta 4</text>
-                <correct>0</correct>
-            </answer>
-        </answers>
-    </question>
-    <question>
-        <id>1</id>
-        <text>Pregunta 1</text>
-        <answers>
-            <answer>
-                <id>1</id>
-                <text>Respuesta 1</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>2</id>
-                <text>Respuesta 2</text>
-                <correct>1</correct>
-            </answer>
-            <answer>
-                <id>3</id>
-                <text>Respuesta 12312312</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>4</id>
-                <text>Respuesta 4</text>
-                <correct>0</correct>
-            </answer>
-        </answers>
-    </question>
-    <question>
-        <id>1</id>
-        <text>Pregunta 1</text>
-        <answers>
-            <answer>
-                <id>1</id>
-                <text>Respuesta 1</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>2</id>
-                <text>Respuesta 2</text>
-                <correct>1</correct>
-            </answer>
-            <answer>
-                <id>3</id>
-                <text>Respuesta asdfasdfsdfa</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>4</id>
-                <text>Respuesta 4</text>
-                <correct>0</correct>
-            </answer>
-        </answers>
-    </question>
-    <question>
-        <id>1</id>
-        <text>Pregunta 1</text>
-        <answers>
-            <answer>
-                <id>1</id>
-                <text>Respuesta 1</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>2</id>
-                <text>Respuesta 2</text>
-                <correct>1</correct>
-            </answer>
-            <answer>
-                <id>3</id>
-                <text>Respuesta 3</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>4</id>
-                <text>Respuesta asdf</text>
-                <correct>0</correct>
-            </answer>
-        </answers>
-    </question>
-    <question>
-        <id>1</id>
-        <text>Pregunta 1</text>
-        <answers>
-            <answer>
-                <id>1</id>
-                <text>Respuesta 1</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>2</id>
-                <text>Respuesta 2</text>
-                <correct>1</correct>
-            </answer>
-            <answer>
-                <id>3</id>
-                <text>Respuesta 3</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>4</id>
-                <text>Respuesta 4</text>
-                <correct>0</correct>
-            </answer>
-        </answers>
-    </question>
-    <question>
-        <id>1</id>
-        <text>Pregunta 1</text>
-        <answers>
-            <answer>
-                <id>1</id>
-                <text>Respuesta 1</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>2</id>
-                <text>Respuesta 2</text>
-                <correct>1</correct>
-            </answer>
-            <answer>
-                <id>3</id>
-                <text>Respuesta 3</text>
-                <correct>0</correct>
-            </answer>
-            <answer>
-                <id>4</id>
-                <text>Respuesta 4</text>
-                <correct>0</correct>
             </answer>
         </answers>
     </question>
